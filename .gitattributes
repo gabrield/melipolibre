@@ -8,4 +8,5 @@
 *.swift linguist-detectable=false
 *.cmake linguist-detectable=false
 *.kv linguist-detectable=false
+*.html linguist-detectable=false
 CMakeLists.txt linguist-detectable=false
