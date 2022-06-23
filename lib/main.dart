@@ -24,6 +24,7 @@ class MelipoLibreApp extends StatelessWidget {
       home: const Scaffold(
         body: LoginScreen(),
       ),
+      routes: [],
       debugShowCheckedModeBanner: false,
     );
   }
