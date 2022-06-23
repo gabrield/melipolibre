@@ -3,6 +3,8 @@
 *.m linguist-detectable=false
 *.dart linguist-detectable=true
 *.cpp linguist-detectable=false
+*.cc linguist-detectable=false
 *.h linguist-detectable=false
 *.swift linguist-detectable=false
 *.cmake linguist-detectable=false
+CMakeLists.txt linguist-detectable=false
