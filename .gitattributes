@@ -7,5 +7,5 @@
 *.h linguist-detectable=false
 *.swift linguist-detectable=false
 *.cmake linguist-detectable=false
-*.kt linguist-detectable=false
+*.kv linguist-detectable=false
 CMakeLists.txt linguist-detectable=false
