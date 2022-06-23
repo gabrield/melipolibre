@@ -38,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _userController,
                   decoration: const InputDecoration(
                     labelText: "Usuário",
+                    hintText: 'user@example.com',
                   ),
                 ),
                 Row(
@@ -47,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: _passwordController,
                         obscureText: _isHidden,
                         decoration: InputDecoration(
-                          labelText: "Usuário",
+                          labelText: "Senha",
                           suffixIcon: IconButton(
                             onPressed: _toggleHiddenPassword,
                             icon: Icon(_isHidden
@@ -59,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                const Divider(),
+                const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {},
                   child: const Text('Entrar'),
