@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'screens/login_screen.dart';
+
+void main() {
+  runApp(const MelipoLibreApp());
+}
+
+class MelipoLibreApp extends StatelessWidget {
+  const MelipoLibreApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MelipoLibre',
+      theme: ThemeData(
+          //canvasColor: Color.fromRGBO(248, 241, 25, 1),
+
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: const TextStyle(
+                  fontSize: 22,
+                ),
+              ),
+          primarySwatch: Colors.blue),
+      home: const LoginScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
