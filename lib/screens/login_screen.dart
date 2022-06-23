@@ -21,62 +21,60 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 80),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SvgPicture.asset(
-                  'assets/images/logo.svg',
-                  width: 250,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 80),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SvgPicture.asset(
+                'assets/images/logo.svg',
+                width: 250,
+              ),
+              TextField(
+                controller: _userController,
+                decoration: const InputDecoration(
+                  labelText: "Usuário",
+                  hintText: 'user@example.com',
                 ),
-                TextField(
-                  controller: _userController,
-                  decoration: const InputDecoration(
-                    labelText: "Usuário",
-                    hintText: 'user@example.com',
-                  ),
-                ),
-                Row(
-                  children: [
-                    Flexible(
-                      child: TextField(
-                        controller: _passwordController,
-                        obscureText: _isHidden,
-                        decoration: InputDecoration(
-                          labelText: "Senha",
-                          suffixIcon: IconButton(
-                            onPressed: _toggleHiddenPassword,
-                            icon: Icon(_isHidden
-                                ? Icons.visibility_off
-                                : Icons.visibility),
-                          ),
+              ),
+              Row(
+                children: [
+                  Flexible(
+                    child: TextField(
+                      controller: _passwordController,
+                      obscureText: _isHidden,
+                      decoration: InputDecoration(
+                        labelText: "Senha",
+                        suffixIcon: IconButton(
+                          onPressed: _toggleHiddenPassword,
+                          icon: Icon(_isHidden
+                              ? Icons.visibility_off
+                              : Icons.visibility),
                         ),
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Entrar'),
-                ),
-                //const Divider(),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('Esqueci a senha'),
-                ),
-                const Divider(),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('Cadastre-se'),
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Entrar'),
+              ),
+              //const Divider(),
+              TextButton(
+                onPressed: () {},
+                child: const Text('Esqueci a senha'),
+              ),
+              const Divider(),
+              TextButton(
+                onPressed: () {},
+                child: const Text('Cadastre-se'),
+              ),
+            ],
           ),
         ),
       ),

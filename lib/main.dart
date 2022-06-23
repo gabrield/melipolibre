@@ -21,7 +21,9 @@ class MelipoLibreApp extends StatelessWidget {
                 ),
               ),
           primarySwatch: Colors.blue),
-      home: const LoginScreen(),
+      home: const Scaffold(
+        body: LoginScreen(),
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
