@@ -32,7 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SvgPicture.network(
-                      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Scaptotrigona_bipunctata_stingless_bee_abelha_sem_ferrao_tubuna.svg/1200px-Scaptotrigona_bipunctata_stingless_bee_abelha_sem_ferrao_tubuna.svg.png"),
+                    "https://upload.wikimedia.org/wikipedia/commons/4/45/Scaptotrigona_bipunctata_stingless_bee_abelha_sem_ferrao_tubuna.svg",
+                    width: 250,
+                  ),
                   TextField(
                     controller: _userController,
                     decoration: const InputDecoration(
