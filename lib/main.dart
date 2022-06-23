@@ -16,7 +16,7 @@ class MelipoLibreApp extends StatelessWidget {
       theme: ThemeData(
           textTheme: ThemeData.light().textTheme.copyWith(
                 headline6: const TextStyle(
-                  fontSize: 22,
+                  fontSize: 20,
                   color: Colors.black,
                 ),
               ),

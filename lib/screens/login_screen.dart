@@ -26,12 +26,12 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: const EdgeInsets.only(top: 80),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SvgPicture.network(
-                  "https://upload.wikimedia.org/wikipedia/commons/4/45/Scaptotrigona_bipunctata_stingless_bee_abelha_sem_ferrao_tubuna.svg",
+                SvgPicture.asset(
+                  'assets/images/logo.svg',
                   width: 250,
                 ),
                 TextField(
