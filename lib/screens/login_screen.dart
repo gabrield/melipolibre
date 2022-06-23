@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -25,11 +26,13 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 40),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  SvgPicture.network(
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Scaptotrigona_bipunctata_stingless_bee_abelha_sem_ferrao_tubuna.svg/1200px-Scaptotrigona_bipunctata_stingless_bee_abelha_sem_ferrao_tubuna.svg.png"),
                   TextField(
                     controller: _userController,
                     decoration: const InputDecoration(
@@ -58,12 +61,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Divider(),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text('Entrar'),
+                    child: const Text('Entrar'),
                   ),
                   //const Divider(),
                   TextButton(
                     onPressed: () {},
-                    child: Text('Esqueci a senha'),
+                    child: const Text('Esqueci a senha'),
                   ),
                 ],
               ),

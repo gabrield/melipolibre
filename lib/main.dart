@@ -14,8 +14,6 @@ class MelipoLibreApp extends StatelessWidget {
     return MaterialApp(
       title: 'MelipoLibre',
       theme: ThemeData(
-          //canvasColor: Color.fromRGBO(248, 241, 25, 1),
-
           textTheme: ThemeData.light().textTheme.copyWith(
                 headline6: const TextStyle(
                   fontSize: 22,
