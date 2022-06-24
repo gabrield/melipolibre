@@ -15,17 +15,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () {
-      /*
-      Auth.login('test', 'passwd_test').then((isLogged) {
-        if (isLogged == true) {
-          Navigator.of(context).pushReplacementNamed(AppRoutes.MAIN_SCREEN);
-        } else {
-          
-        }
-        */
+    Timer(const Duration(seconds: 3), () {
       Auth.isLogged().then((isLogged) {
-        if (isLogged == true) {
+        if (isLogged) {
           Navigator.of(context).pushReplacementNamed(AppRoutes.MAIN_SCREEN);
         } else {
           Navigator.of(context).pushReplacementNamed(AppRoutes.LOGIN_SCREEN);
@@ -36,11 +28,18 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        width: 50,
-        height: 50,
-        child: const CircularProgressIndicator(),
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Center(
+            child: SizedBox(
+              //padding: const EdgeInsets.all(10),
+              child: CircularProgressIndicator(),
+            ),
+          )
+        ],
       ),
     );
   }
