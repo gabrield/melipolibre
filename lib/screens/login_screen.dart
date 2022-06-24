@@ -14,6 +14,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _isHidden = true;
   Future<bool>? isLogged;
+  SvgPicture logo = SvgPicture.asset(
+    'assets/images/logo.svg',
+    width: 250,
+  );
 
   final _userController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -26,93 +30,84 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   initState() {
-    isLogged = Auth.login(_userController.text, _passwordController.text);
     super.initState();
   }
 //  _sucessLogin() {}
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: isLogged,
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-        Widget child = SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 80),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SvgPicture.asset(
-                    'assets/images/logo.svg',
-                    width: 250,
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 80),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                logo,
+                TextField(
+                  controller: _userController,
+                  decoration: const InputDecoration(
+                    labelText: "Usuário",
+                    hintText: 'user@example.com',
+                    //errorText: _errorText,
                   ),
-                  TextField(
-                    controller: _userController,
-                    decoration: const InputDecoration(
-                      labelText: "Usuário",
-                      hintText: 'user@example.com',
-                      //errorText: _errorText,
-                    ),
-                    onSubmitted: (username) {
-                      //validar aqui
-                    },
-                  ),
-                  Row(
-                    children: [
-                      Flexible(
-                        child: TextField(
-                          controller: _passwordController,
-                          obscureText: _isHidden,
-                          decoration: InputDecoration(
-                            labelText: "Senha",
-                            suffixIcon: IconButton(
-                              onPressed: _toggleHiddenPassword,
-                              icon: Icon(_isHidden
-                                  ? Icons.visibility_off
-                                  : Icons.visibility),
-                            ),
+                  onSubmitted: (username) {
+                    //validar aqui
+                  },
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      child: TextField(
+                        controller: _passwordController,
+                        obscureText: _isHidden,
+                        decoration: InputDecoration(
+                          labelText: "Senha",
+                          suffixIcon: IconButton(
+                            onPressed: _toggleHiddenPassword,
+                            icon: Icon(_isHidden
+                                ? Icons.visibility_off
+                                : Icons.visibility),
                           ),
-                          onSubmitted: (_) {},
                         ),
+                        onSubmitted: (_) {},
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      Future<bool> login = Auth.login(
-                          _userController.text, _passwordController.text);
-                      login.then((success) {
-                        if (success) {
-                          Navigator.of(context)
-                              .pushReplacementNamed(AppRoutes.MAIN_SCREEN);
-                        }
-                      });
-                    },
-                    child: const Text('Entrar'),
-                  ),
-                  //const Divider(),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text('Esqueci a senha'),
-                  ),
-                  const Divider(),
-                  TextButton(
-                    onPressed: () {
-                      //Get.to(const MainScreen());
-                    },
-                    child: const Text('Cadastre-se'),
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    Future<bool> login = Auth.login(
+                        _userController.text, _passwordController.text);
+                    login.then((success) {
+                      if (success) {
+                        Navigator.of(context)
+                            .pushReplacementNamed(AppRoutes.MAIN_SCREEN);
+                      }
+                    });
+                  },
+                  child: const Text('Entrar'),
+                ),
+                //const Divider(),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text('Esqueci a senha'),
+                ),
+                const Divider(),
+                TextButton(
+                  onPressed: () {
+                    //Get.to(const MainScreen());
+                  },
+                  child: const Text('Cadastre-se'),
+                ),
+              ],
             ),
           ),
-        );
-
-        return Scaffold(body: child);
-      },
+        ),
+      ),
     );
   }
 }
