@@ -14,7 +14,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _isHidden = true;
-  Future<bool>? isLogged;
   SvgPicture logo = SvgPicture.asset(
     AppAssets.APP_LOGO,
     width: 250,
@@ -51,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _userController,
                   decoration: const InputDecoration(
                     labelText: "Usuário",
-                    hintText: 'user@example.com',
+                    hintText: 'usuario@examplo.com.br',
                     //errorText: _errorText,
                   ),
                   onSubmitted: (username) {
@@ -80,10 +79,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: () {
-                    Future<bool> login = Auth.login(
-                        _userController.text, _passwordController.text);
-                    login.then((success) {
+                  onPressed: () async {
+                    Auth.login(_userController.text, _passwordController.text)
+                        .then((success) {
                       if (success) {
                         Navigator.of(context)
                             .pushReplacementNamed(AppRoutes.MAIN_SCREEN);
