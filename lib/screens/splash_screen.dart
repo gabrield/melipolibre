@@ -35,7 +35,6 @@ class _SplashScreenState extends State<SplashScreen> {
         children: const [
           Center(
             child: SizedBox(
-              //padding: const EdgeInsets.all(10),
               child: CircularProgressIndicator(),
             ),
           )
