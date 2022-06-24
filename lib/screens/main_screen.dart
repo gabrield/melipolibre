@@ -19,10 +19,10 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: () {
+              onPressed: () async {
                 Auth.logout().then(
-                  (value) {
-                    if (value == true) {
+                  (isLoggedOut) {
+                    if (isLoggedOut) {
                       Navigator.of(context)
                           .pushReplacementNamed(AppRoutes.LOGIN_SCREEN);
                     }

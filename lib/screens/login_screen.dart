@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:melipolibre/utils/app_assets.dart';
 import 'package:melipolibre/utils/app_routes.dart';
 import 'package:melipolibre/controllers/login_controller.dart';
 
@@ -15,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isHidden = true;
   Future<bool>? isLogged;
   SvgPicture logo = SvgPicture.asset(
-    'assets/images/logo.svg',
+    AppAssets.APP_LOGO,
     width: 250,
   );
 
