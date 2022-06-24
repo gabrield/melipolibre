@@ -1,5 +1,6 @@
 import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:melipolibre/controllers/login_controller.dart';
 import 'package:melipolibre/utils/app_routes.dart';
 
 class MainScreen extends StatefulWidget {
@@ -19,15 +20,14 @@ class _MainScreenState extends State<MainScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                prefs.remove('api-key').then((success) {
-                  if (success) {
-                    print('success removing');
-                    Navigator.of(context)
-                        .pushReplacementNamed(AppRoutes.LOGIN_SCREEN);
-                  } else {
-                    print('fail removing');
-                  }
-                });
+                Auth.logout().then(
+                  (value) {
+                    if (value == true) {
+                      Navigator.of(context)
+                          .pushReplacementNamed(AppRoutes.LOGIN_SCREEN);
+                    }
+                  },
+                );
               },
               icon: const Icon(Icons.logout))
         ],
