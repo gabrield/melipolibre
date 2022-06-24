@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'screens/login_screen.dart';
+import 'package:melipolibre/utils/app_routes.dart';
+import 'package:melipolibre/screens/login_screen.dart';
+import 'package:melipolibre/screens/main_screen.dart';
 
 void main() {
   runApp(const MelipoLibreApp());
@@ -21,10 +23,11 @@ class MelipoLibreApp extends StatelessWidget {
                 ),
               ),
           primarySwatch: Colors.blue),
-      home: const Scaffold(
-        body: LoginScreen(),
-      ),
-      routes: [],
+      routes: {
+        AppRoutes.LOGIN_SCREEN: (_) => const LoginScreen(),
+        AppRoutes.MAIN_SCREEN: (_) => const MainScreen(),
+      },
+      initialRoute: AppRoutes.LOGIN_SCREEN,
       debugShowCheckedModeBanner: false,
     );
   }
