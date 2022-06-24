@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:melipolibre/utils/app_assets.dart';
@@ -27,12 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
       _isHidden = !_isHidden;
     });
   }
-
-  @override
-  initState() {
-    super.initState();
-  }
-//  _sucessLogin() {}
 
   @override
   Widget build(BuildContext context) {

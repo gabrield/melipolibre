@@ -30,12 +30,22 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
+      padding: const EdgeInsets.all(40),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Center(
-            child: SizedBox(
-              child: CircularProgressIndicator(),
+            child: Column(
+              children: const [
+                Text(
+                  'Inicializando',
+                  softWrap: true,
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+                LinearProgressIndicator(),
+              ],
             ),
           )
         ],
