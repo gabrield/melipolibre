@@ -13,17 +13,24 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _isHidden = true;
-  SvgPicture logo = SvgPicture.asset(
-    AppAssets.APP_LOGO,
-    width: 250,
-  );
-
   final _userController = TextEditingController();
   final _passwordController = TextEditingController();
+  final logo = SvgPicture.asset(
+    AppAssets.APP_LOGO,
+    height: 280,
+  );
 
   _toggleHiddenPassword() {
     setState(() {
       _isHidden = !_isHidden;
+    });
+  }
+
+  _login() {
+    Auth.login(_userController.text, _passwordController.text).then((success) {
+      if (success) {
+        Navigator.of(context).pushReplacementNamed(AppRoutes.MAIN_SCREEN);
+      }
     });
   }
 
@@ -32,8 +39,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 80),
+          padding: const EdgeInsets.only(top: 40),
           child: Container(
+            color: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -65,7 +73,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 : Icons.visibility),
                           ),
                         ),
-                        onSubmitted: (_) {},
+                        onSubmitted: (_) async {
+                          _login();
+                        },
                       ),
                     ),
                   ],
@@ -73,26 +83,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () async {
-                    Auth.login(_userController.text, _passwordController.text)
-                        .then((success) {
-                      if (success) {
-                        Navigator.of(context)
-                            .pushReplacementNamed(AppRoutes.MAIN_SCREEN);
-                      }
-                    });
+                    _login();
                   },
                   child: const Text('Entrar'),
                 ),
-                //const Divider(),
                 TextButton(
                   onPressed: () {},
                   child: const Text('Esqueci a senha'),
                 ),
                 const Divider(),
                 TextButton(
-                  onPressed: () {
-                    //Get.to(const MainScreen());
-                  },
+                  onPressed: () {},
                   child: const Text('Cadastre-se'),
                 ),
               ],
