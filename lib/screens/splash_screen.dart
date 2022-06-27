@@ -38,7 +38,6 @@ class _SplashScreenState extends State<SplashScreen> {
       ExactAssetPicture(SvgPicture.svgStringDecoderBuilder, AppAssets.APP_LOGO),
       context,
     );
-    //precacheImage(logo.image, context);
   }
 
   @override
@@ -53,14 +52,14 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               children: const [
                 Text(
-                  'Inicializando',
+                  'Melipolibre...',
                   softWrap: true,
                   style: TextStyle(
                     fontSize: 15,
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 LinearProgressIndicator(),
               ],
