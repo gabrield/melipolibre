@@ -1,7 +1,7 @@
-import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:melipolibre/controllers/login_controller.dart';
 import 'package:melipolibre/utils/app_routes.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -11,7 +11,18 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  EncryptedSharedPreferences prefs = EncryptedSharedPreferences();
+  late Future<ParseUser> user;
+
+  @override
+  initState() {
+    super.initState();
+    user = _getUser();
+  }
+
+  Future<ParseUser> _getUser() async {
+    ParseUser user = await ParseUser.currentUser();
+    return Future<ParseUser>.value(user);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +31,7 @@ class _MainScreenState extends State<MainScreen> {
         actions: [
           IconButton(
               onPressed: () async {
+                //print(await _getUser());
                 Auth.logout().then(
                   (isLoggedOut) {
                     if (isLoggedOut) {
@@ -33,8 +45,16 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       body: Column(
-        children: const [
-          Center(child: Text('Teste')),
+        children: [
+          FutureBuilder<ParseUser>(
+              future: user,
+              builder:
+                  (BuildContext context, AsyncSnapshot<ParseUser> snapshot) {
+                if (snapshot.hasData) {
+                  return Text("${snapshot.data?.username}");
+                }
+                return const CircularProgressIndicator();
+              }),
         ],
       ),
       floatingActionButton: FloatingActionButton(

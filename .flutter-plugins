@@ -1,6 +1,20 @@
 # This is a generated file; do not edit or check into version control.
+connectivity_plus=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_plus-1.4.0/
+connectivity_plus_linux=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_plus_linux-1.3.1/
+connectivity_plus_macos=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_plus_macos-1.2.4/
+connectivity_plus_web=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_plus_web-1.2.2/
+connectivity_plus_windows=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_plus_windows-1.2.2/
+package_info_plus=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/package_info_plus-1.4.2/
+package_info_plus_linux=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/package_info_plus_linux-1.0.5/
+package_info_plus_macos=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/package_info_plus_macos-1.3.0/
+package_info_plus_web=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/package_info_plus_web-1.0.5/
+package_info_plus_windows=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/package_info_plus_windows-1.0.5/
+path_provider=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.11/
+path_provider_android=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.16/
+path_provider_ios=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_ios-2.0.10/
 path_provider_linux=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.1.7/
-path_provider_windows=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.1.0/
+path_provider_macos=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-2.0.6/
+path_provider_windows=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.7/
 shared_preferences=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.15/
 shared_preferences_android=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.12/
 shared_preferences_ios=/home/gabs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_ios-2.1.1/

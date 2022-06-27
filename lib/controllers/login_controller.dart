@@ -1,43 +1,43 @@
-import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class Auth {
-  static final EncryptedSharedPreferences _prefs = EncryptedSharedPreferences();
+  static Future<bool> register(String emailAddress, String password) async {
+    final user =
+        ParseUser(emailAddress.trim(), password.trim(), emailAddress.trim());
+    final response = await user.signUp();
+    return Future<bool>.value(response.success);
+  }
 
-  static Future<bool> login(user, password) async {
-    Future<bool> okLogin = Future<bool>.value(false);
-    if ((user != null) && (password != null)) {
-      EncryptedSharedPreferences prefs = EncryptedSharedPreferences();
-      String key = await prefs.getString('api-key');
-
-      if (key.isNotEmpty) {
-        okLogin = Future<bool>.value(true);
-      } else {
-        if (user.isNotEmpty && password.isNotEmpty) {
-          /*COLOCAR AQUI A LOGICA DE AUTENTICAÇÃO COM API*/
-          key = (user + password); // mock key
-          await prefs.setString('api-key', key);
-          okLogin = Future<bool>.value(true);
-        }
-      }
+  static Future<bool> login(String emailAddress, String password) async {
+    final user = ParseUser(emailAddress.trim(), password.trim(), emailAddress);
+    var response = await user.login();
+    if (response.success) {
+    } else {
+      print(response.error?.message);
     }
-    return okLogin;
+    return Future<bool>.value(response.success);
   }
 
   static Future<bool> logout() async {
-    Future<bool> isLoggedOut = Future<bool>.value(false);
-    await _prefs.remove('api-key').then((success) {
-      isLoggedOut = Future<bool>.value(success);
-    });
-    return isLoggedOut;
+    Future<bool> isLogout = Future<bool>.value(false);
+    try {
+      ParseUser currentUser = await ParseUser.currentUser();
+      var result = await currentUser.logout();
+      isLogout = Future<bool>.value(result.success);
+    } catch (e) {
+      throw Exception(e);
+    }
+    return isLogout;
   }
 
   static Future<bool> isLogged() async {
     Future<bool> isLogged = Future<bool>.value(false);
-    await _prefs.getString('api-key').then((key) {
-      if (key.isNotEmpty) {
-        isLogged = Future<bool>.value(true);
-      }
-    });
+    try {
+      final ParseUser currentUser = await ParseUser.currentUser();
+      isLogged = Future<bool>.value(currentUser.username != null);
+    } catch (e) {
+      print("isLogged ==============> " + e.toString());
+    }
     return isLogged;
   }
 }
