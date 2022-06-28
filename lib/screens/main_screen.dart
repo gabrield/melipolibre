@@ -11,18 +11,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  late Future<ParseUser> user;
-
-  @override
-  initState() {
-    super.initState();
-    user = _getUser();
-  }
-
-  Future<ParseUser> _getUser() async {
-    ParseUser user = await ParseUser.currentUser();
-    return user;
-  }
+  final Future<ParseUser> user = Auth.getCurrentUser();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +20,6 @@ class _MainScreenState extends State<MainScreen> {
         actions: [
           IconButton(
               onPressed: () async {
-                //print(await _getUser());
                 Auth.logout().then(
                   (isLoggedOut) {
                     if (isLoggedOut) {

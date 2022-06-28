@@ -1,6 +1,11 @@
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class Auth {
+  static Future<ParseUser> getCurrentUser() async {
+    ParseUser user = await ParseUser.currentUser();
+    return user;
+  }
+
   static Future<bool> register(String emailAddress, String password) async {
     final ParseUser user =
         ParseUser(emailAddress.trim(), password.trim(), emailAddress.trim());
