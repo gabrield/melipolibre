@@ -14,7 +14,7 @@ class Auth {
     var response = await user.login();
     if (response.success) {
     } else {
-      print(response.error?.message);
+      throw Exception(response.error?.message);
     }
     return Future<bool>.value(response.success);
   }
@@ -37,9 +37,9 @@ class Auth {
       final ParseUser currentUser = await ParseUser.currentUser();
       bool logged = currentUser.username != null;
       isLogged = Future<bool>.value(logged);
+      return isLogged;
     } catch (e) {
-      print("isLogged ==============> " + e.toString());
+      return isLogged;
     }
-    return isLogged;
   }
 }

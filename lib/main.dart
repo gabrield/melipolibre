@@ -40,7 +40,7 @@ class MelipoLibreApp extends StatelessWidget {
       routes: {
         AppRoutes.SPLASH_SCREEN: (_) => const SplashScreen(),
         AppRoutes.LOGIN_SCREEN: (_) => const LoginScreen(),
-        AppRoutes.MAIN_SCREEN: (_) => MainScreen(),
+        AppRoutes.MAIN_SCREEN: (_) => const MainScreen(),
       },
       initialRoute: AppRoutes.SPLASH_SCREEN,
       debugShowCheckedModeBanner: false,

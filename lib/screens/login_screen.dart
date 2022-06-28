@@ -13,8 +13,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _isHidden = true;
+  bool _loginPressed = false;
   final _userController = TextEditingController();
   final _passwordController = TextEditingController();
+  FocusNode focusNode = FocusNode();
   final logo = SvgPicture.asset(
     AppAssets.APP_LOGO,
     height: 280,
@@ -26,12 +28,40 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  _login() {
-    Auth.login(_userController.text, _passwordController.text).then((success) {
-      if (success) {
+  _login(context) async {
+    try {
+      var loginOk =
+          await Auth.login(_userController.text, _passwordController.text);
+
+      if (loginOk) {
         Navigator.of(context).pushReplacementNamed(AppRoutes.MAIN_SCREEN);
       }
-    });
+    } catch (e) {
+      setState(() {
+        _loginPressed = false;
+      });
+      _showError(e.toString());
+    }
+  }
+
+  _showError(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Error!"),
+          content: Text(errorMessage),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -52,10 +82,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: const InputDecoration(
                     labelText: "Usuário",
                     hintText: 'usuario@examplo.com.br',
-                    //errorText: _errorText,
                   ),
-                  onSubmitted: (username) {
-                    //validar aqui
+                  onSubmitted: (_) {
+                    focusNode.requestFocus();
                   },
                 ),
                 Row(
@@ -63,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Flexible(
                       child: TextField(
                         controller: _passwordController,
+                        focusNode: focusNode,
                         obscureText: _isHidden,
                         decoration: InputDecoration(
                           labelText: "Senha",
@@ -74,7 +104,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         onSubmitted: (_) async {
-                          _login();
+                          _login(context);
+                          setState(() {
+                            _loginPressed = true;
+                          });
                         },
                       ),
                     ),
@@ -83,9 +116,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () async {
-                    _login();
+                    _login(context);
+                    setState(() {
+                      _loginPressed = true;
+                    });
                   },
-                  child: const Text('Entrar'),
+                  child: _loginPressed
+                      ? const SizedBox(
+                          height: 12,
+                          width: 12,
+                          child: CircularProgressIndicator(
+                            color: Colors.black,
+                          ),
+                        )
+                      : const Text('Entrar'),
                 ),
                 TextButton(
                   onPressed: () {},
