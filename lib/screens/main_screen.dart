@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
 
   Future<ParseUser> _getUser() async {
     ParseUser user = await ParseUser.currentUser();
-    return Future<ParseUser>.value(user);
+    return user;
   }
 
   @override
@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
               builder:
                   (BuildContext context, AsyncSnapshot<ParseUser> snapshot) {
                 if (snapshot.hasData) {
-                  return Text("${snapshot.data?.username}");
+                  return Text("${snapshot.data?.emailAddress}");
                 }
                 return const CircularProgressIndicator();
               }),
