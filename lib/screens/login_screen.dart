@@ -44,18 +44,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _login(context) async {
     setState(() {
-      _userController.text.isEmpty
-          ? _validateUser = true
-          : _validateUser = false;
-      _passwordController.text.isEmpty
-          ? _validatePassword = true
-          : _validatePassword = false;
+      _validateUser = _userController.text.isEmpty;
+      _validatePassword = _passwordController.text.isEmpty;
       _loginPressed = true;
     });
     try {
       var loginOk =
           await Auth.login(_userController.text, _passwordController.text);
-
       if (loginOk) {
         Navigator.of(context).pushReplacementNamed(AppRoutes.MAIN_SCREEN);
       }
