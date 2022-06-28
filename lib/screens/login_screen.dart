@@ -14,6 +14,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _isHidden = true;
   bool _loginPressed = false;
+  bool _validateUser = false;
+  bool _validatePassword = false;
   final _userController = TextEditingController();
   final _passwordController = TextEditingController();
   final FocusNode focusNode = FocusNode();
@@ -21,6 +23,18 @@ class _LoginScreenState extends State<LoginScreen> {
     AppAssets.APP_LOGO,
     height: 280,
   );
+
+  @override
+  void dispose() {
+    _userController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  initState() {
+    super.initState();
+  }
 
   _toggleHiddenPassword() {
     setState(() {
@@ -30,6 +44,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _login(context) async {
     setState(() {
+      _userController.text.isEmpty
+          ? _validateUser = true
+          : _validateUser = false;
+      _passwordController.text.isEmpty
+          ? _validatePassword = true
+          : _validatePassword = false;
       _loginPressed = true;
     });
     try {
@@ -82,7 +102,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 logo,
                 TextField(
                   controller: _userController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
+                    errorText: _validateUser ? 'campo usuário vazio' : null,
                     labelText: "Usuário",
                     hintText: 'usuario@examplo.com.br',
                   ),
@@ -98,6 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         focusNode: focusNode,
                         obscureText: _isHidden,
                         decoration: InputDecoration(
+                          errorText:
+                              _validatePassword ? 'campo senha vazio' : null,
                           labelText: "Senha",
                           suffixIcon: IconButton(
                             onPressed: _toggleHiddenPassword,
