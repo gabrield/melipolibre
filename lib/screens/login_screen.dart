@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _loginPressed = false;
   final _userController = TextEditingController();
   final _passwordController = TextEditingController();
-  FocusNode focusNode = FocusNode();
+  final FocusNode focusNode = FocusNode();
   final logo = SvgPicture.asset(
     AppAssets.APP_LOGO,
     height: 280,
@@ -29,6 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   _login(context) async {
+    setState(() {
+      _loginPressed = true;
+    });
     try {
       var loginOk =
           await Auth.login(_userController.text, _passwordController.text);
@@ -105,9 +108,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         onSubmitted: (_) async {
                           _login(context);
-                          setState(() {
-                            _loginPressed = true;
-                          });
                         },
                       ),
                     ),
@@ -117,9 +117,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: () async {
                     _login(context);
-                    setState(() {
-                      _loginPressed = true;
-                    });
                   },
                   child: _loginPressed
                       ? const SizedBox(
